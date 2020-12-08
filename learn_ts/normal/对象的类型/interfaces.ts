@@ -53,4 +53,48 @@ let jerry:Person1 = {
   name:'jerry',
   gender:'male'
 }
+// 使用[propName:string]定义了任意属性取string类型的值
+
+//需要注意的是一旦定义了任意属性，那么确定属性和可选属性的类型都必须是它的类型的子集
+
+interface Person2 {
+    name:string;
+    age?:string;
+    [propName:string]:string
+}
+
+// 上述例子中，age的类型如果是number话就会报错，因为number不是string类型的子属性
+
+
+// 一个接口中只能定义一个任意属性，如果接口中由多个类型的属性，则可以在任意属性中使用联合属性
+
+interface Person3 {
+    name:string;
+    age:number;
+    [propName:string]:string | number;
+}
+
+let toms:Person3 = {
+    name:'tom',
+    age:18,
+    gender:'male'
+}
+
+// 只读属性
+// 有时候我们希望对象中的一些字段只能在创建的时候被赋予值，可以用readonly来定义只读属性
+interface Person4 {
+    readonly id:number;
+    name:string;
+    age?:number;
+    [propName:string]:string | number;
+}
+
+let lily:Person4 = {
+    id:88997,
+    name:'lily',
+    age:28,
+    gender:'male'
+}
+// lily.id = 5;  上述例子中，使用readonly定义的id初始化后，又被赋值了，所以报错了
+// 注意:只读的约束存在于第一次给对象赋值的时候，而不是第一次给只读属性赋值的时候。
 
