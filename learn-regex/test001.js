@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2020-12-21 10:21:27
+ * @LastEditTime: 2020-12-21 14:48:58
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /aboutWeb/learn-regex/test001.js
+ */
 //第一章：正则表达式字符匹配攻略
 //1.两种模糊匹配
 // 如果正则表达式只有精准匹配是没有什么意义的，比如/hello/也只能匹配Hello中这个字符串var 
@@ -62,4 +70,94 @@ console.log(string3.match(regex3))
 // 如果要匹配任意字符怎么办？ 可以使用 [\d\D] [\w\W] [\s\S] 和[^]中的任何一个
 
 
-// 3.量词
+// 3.量词:量词也称重复
+// 1.3.1 简写形式
+// {m,}:表示至少出现m次
+// {m}:等价于{m,m},表示出现了m次
+// ?:等价于{0,1},表示出现或者不出现,记忆方式:问号的意思表示,有吗?
+// +:等价于{1,},表示至少出现一次,记忆方式:加号是追加的意思,得先有一个才考虑追加
+// *:等价于{0,},表示出现任意次
+
+// 1.3.2 贪婪匹配与惰性匹配
+
+var regex4 = /\d{2,5}/g;
+var string4 = "123 1234 12345 123456";
+console.log(string4.match(regex4))
+
+// 其中正则/\d{2,5}/ 表示数字连续出现2-5次,会匹配2-5位连续数字
+// 但是有时候 贪婪不是一件好事,惰性匹配就是尽可能少的匹配
+
+var regex5 = /\d{2,5}?/g;
+var string5 = "123 1234 12345 123456";
+console.log(string5.match(regex5));
+
+// 上述的例子 虽然2-5次都行,但是两个就够了 就不往下尝试了
+
+// 通过在量词后边加个问号就能实现惰性匹配
+// 惰性量词
+// {m,n}?  m次或者n次
+// {m,}?   m次或者多次
+// ??       
+// +?
+// *
+
+//1.4 多选分支
+// 一个模式可以实现横向和纵向模糊匹配,而多选分支可以支持多个子模式 任选其一
+// 具体形式如下:(p1|p2|p3),其中p1,p2,p3是子模式,用|(管道符)分割,表示其中任何之一
+// 例如要匹配字符串good和nice 可以使用/good|nice/
+
+var regex6 = /good|nice/g;
+var string6 = "good idea,nice try";
+console.log(string6.match(regex6));
+
+//但是有个事实我们应该注意,比如:我用/good|goodbye/g,去匹配'goodbye'字符串时,结果是good;
+
+var regex7 = /good|goodbye/g;
+var string7 = 'goodbye';
+console.log(string7.match(regex7));
+
+var regex8 = /goodbye|good/g;
+var string8 = 'goodbye';
+console.log(string8.match(regex8));
+// 分支结构也是惰性的,即当前面的匹配上了 后边的就不会再尝试了
+
+// 1.5 案例分析:匹配字符,无非就是字符组,量词和每个分支结构的组合使用罢了
+
+// 1.5.1:匹配16进制颜色值
+// 要求匹配:
+// #ffbbad
+// #Fc01DF
+// #FFF
+// #ffE
+// 分析:表示一个16进制字符,可以使用字符组[0-9a-fA-F],其中字符可以出现3或者6次,需要使用两次和分支结构,使用分支结构需要注意顺序
+var regex9 = /#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})/g
+var string9 = "#ffbbad #Fc01DF #FFF #ffE";
+console.log(string9.match(regex9))
+
+//1.5.2 匹配时间
+// 以24小时为例
+// 要求匹配: 23:59   02:07
+// 分析: 共4位数字,第一位数字可以为[0-2] 当第1位为'2'时候.第2位可以为[0-3],其他情况第2位为[0-9],第三位是[0-5],第四位是[0-9];
+
+// 正则如下
+
+var regex10 = /^([01][0-9]|[2][0-3]):[0-5][0-9]$/;
+console.log(regex10.test("23:59"));
+console.log(regex10.test("02:07"));
+
+
+//1.5.3 匹配日期
+// 比如 yyyy-mm-dd格式为例
+// 要求匹配:2017-06-10
+// 分析:年份:[0-9]{4}  月份:(0[1-9]|1[0-2]) 日,最多31天 可用(0[1-9]|1[0-9]|2[0-9]|3[01]);
+var regex11 = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[01])$/g
+console.log(regex11.test("2017-06-20"))
+
+//1.5.4 window操作系统文件路径
+
+// 要求匹配
+// F:\study\javascript\regex\regular expression.pdf
+// F:\study\javascript\regex\
+// F:\study\javascript
+// F:\
+
