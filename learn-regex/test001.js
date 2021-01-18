@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-12-21 10:21:27
- * @LastEditTime: 2020-12-21 14:48:58
+ * @LastEditTime: 2020-12-25 15:05:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /aboutWeb/learn-regex/test001.js
@@ -144,7 +144,6 @@ console.log(string9.match(regex9))
 var regex10 = /^([01][0-9]|[2][0-3]):[0-5][0-9]$/;
 console.log(regex10.test("23:59"));
 console.log(regex10.test("02:07"));
-
 
 //1.5.3 匹配日期
 // 比如 yyyy-mm-dd格式为例
