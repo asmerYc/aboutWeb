@@ -1,0 +1,32 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-01-19 14:44:48
+ * @LastEditTime: 2021-01-19 14:47:02
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /aboutWeb/css3/transition/transition-simple.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>transition-simple</title>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      background: red;
+      transition:width 1s linear 2s;
+      /* safari */
+      -webkit-transition:width 1s linear 2s;
+    }
+    div:hover {
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+</body>
+</html>

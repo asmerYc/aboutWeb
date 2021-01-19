@@ -1,0 +1,40 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-01-19 14:40:54
+ * @LastEditTime: 2021-01-19 14:44:20
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /aboutWeb/css3/transition/transition-All.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      div {
+        width: 100px;
+        height: 100px;
+        background: red;
+        transition-property: width;
+        transition-duration:1s;
+        transition-timing-function: linear;
+        transition-delay: 2s;
+        /* safari */
+        -webkit-transition-property: width;
+        -webkit-transition-duration:1s;
+        -webkit-transition-timing-function: linear;
+        -webkit-transition-delay: 2s;
+      }
+      div:hover {
+        width: 200px;
+      }
+
+
+  </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

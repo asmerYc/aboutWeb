@@ -1,0 +1,75 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-01-19 16:15:23
+ * @LastEditTime: 2021-01-19 16:24:18
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /aboutWeb/css3/donghua/donghuaTest4.html
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>W3Cschool教程(w3cschool.cn)</title>
+<style> 
+/*   
+  @keyframes                      规定动画
+  animation                       所画动画属性的简写属性，除了animation-play-state属性
+  animation-name                  规定@keyframes动画的名称
+  animation-duration              规定动画完成一个周期所花费的秒或毫秒，默认是0
+  animation-timing-function       规定动画的速度曲线，默认是''ease'
+  animation-delay                 规定动画从何时开始，默认是0
+  animation-iteration-count       规定动画被播放的次数，默认是1
+  animation-direction             规定动画是否在下一个周期逆向的播放，默认是normal
+  animation-play-state            规定动画是否正在运行或者暂停，默认是running
+ */
+div
+{
+	width:100px;
+	height:100px;
+	background:red;
+	position:relative;
+	animation-name:myfirst;
+	animation-duration:5s;
+	animation-timing-function:linear;
+	animation-delay:2s;
+	animation-iteration-count:infinite;
+	animation-direction:alternate;
+	animation-play-state:running;
+	/* Safari and Chrome: */
+	-webkit-animation-name:myfirst;
+	-webkit-animation-duration:5s;
+	-webkit-animation-timing-function:linear;
+	-webkit-animation-delay:2s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-direction:alternate;
+	-webkit-animation-play-state:running;
+}
+
+@keyframes myfirst
+{
+	0%   {background:red; left:0px; top:0px;}
+	25%  {background:yellow; left:200px; top:0px;}
+	50%  {background:blue; left:200px; top:200px;}
+	75%  {background:green; left:0px; top:200px;}
+	100% {background:red; left:0px; top:0px;}
+}
+
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+	0%   {background:red; left:0px; top:0px;}
+	25%  {background:yellow; left:200px; top:0px;}
+	50%  {background:blue; left:200px; top:200px;}
+	75%  {background:green; left:0px; top:200px;}
+	100% {background:red; left:0px; top:0px;}
+}
+</style>
+</head>
+<body>
+
+<p><b>注意:</b> 该实例在 Internet Explorer 9 及更早 IE 版本是无效的。</p>
+
+<div></div>
+
+</body>
+</html>
