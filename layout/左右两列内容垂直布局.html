@@ -1,0 +1,65 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-02-04 09:39:07
+ * @LastEditTime: 2021-02-04 14:04:21
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /aboutWeb/layout/左右两列内容垂直布局.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>左右两列垂直布局</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    .parent {
+      display: flex;
+      flex-direction: row;
+      height: 100vh; 
+    }
+    .left {
+      position: relative;
+      flex: 1;
+      background-color: rosybrown;
+    }
+    .innerImg {
+      position: absolute;
+      right: 6rem;
+      top: 20rem;
+      width: 321.11px;
+      height: 225px;
+      transform: rotate(90deg) translate(-50px,-50px);
+    }
+
+    .right {
+      position: relative;
+      width: 100px;
+      border-left: 5px solid red;
+      background-color: sandybrown;
+    }
+    .innerText {
+      position: absolute;
+      transform: rotate(90deg) translate(-50px,-50px);
+      top: 4rem;
+      left: -3rem;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="parent">
+      <div class="left">
+        <div class="innerImg">这个斯柯达哈萨克的骄傲可视对讲阿斯兰的骄傲了圣诞节阿斯兰的骄傲是来得及拉克丝</div>
+      </div>
+      <div class="right">
+        <div class="innerText">返回</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
