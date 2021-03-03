@@ -1,0 +1,59 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-03-02 16:43:50
+ * @LastEditTime: 2021-03-02 20:05:03
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /aboutWeb/wirteCode/1.debounce.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>跟着underscore学防抖</title>
+  <style>
+    #container{
+        width: 100%; 
+        height: 200px; 
+        line-height: 200px; 
+        text-align: center; 
+        color: #fff; 
+        background-color: #444; 
+        font-size: 30px;
+    }
+</style>
+</head>
+<body>
+  <div id="container"></div>
+</body>
+<script>
+  //防抖的原理：你尽管触发，但是我一定是在事件触发n秒后执行，如果你在一个事件触发的n秒内又触发了这个事件，那我就以新的事件的事件为准，n秒后才执行
+  // 总之，就是要等你触发完事件n秒内不再触发事件，我才执行。
+window.onload = function () {
+  var count = 1;
+  var container = document.getElementById('container');
+  function getUserAction(e) {
+    console.log(e,'看看这个事件！！')
+    container.innerHTML = count++ ;
+  }
+  // 防抖一般传入需要执行函数和等待执行时间
+  container.onmousemove = debounce(getUserAction,2000);
+}
+// 一般在异步函数的时候 都记得要处理一下上下文的问题，常见的就是延时函数之类的场景 要注意一下；
+// 正常一般在操作函数中能获取到当前事件对象，异步函数中要手动传入。 总结思考一下哈 老袁
+function debounce(func,wait){
+    var timeout;
+    return function(){
+      var context = this;
+      var args = arguments;
+      clearTimeout(timeout);
+      timeout = setTimeout(function(){
+        console.log(context);
+        func.apply(context,args);
+      },wait);
+    }
+  }
+
+</script>
+</html>
